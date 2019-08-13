@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/theme/default.css">
+    <title>TO-DO List</title>
+</head>
+
+<body>
+    <div id="app">
+        <md-table>
+            <md-table-toolbar>
+                <div class="md-toolbar-section-start">
+                    <h1 class="md-title">Задачи</h1>
+                </div>
+
+                <md-field md-clearable class="md-toolbar-section-end">
+                    <md-input placeholder="Новая задача..." v-model="newCard" @keyup.enter="addCard()" />
+                </md-field>
+            </md-table-toolbar>
+        </md-table>
+        <!-- <md-field>
+            <label>новая задача</label>
+            <md-input v-model="newCard" @keyup.enter="addCard()"></md-input>
+            <span class="md-helper-text">нажми <code>ENTER</code> для сохранения</span>
+        </md-field> -->
+        <div class="full-control">
+            <md-list>
+                <md-subheader>чек лист</md-subheader>
+                <div class="lists" v-for="(card,index) in cards">
+                    <md-checkbox @change="saveCard()" true-value='true' v-model="card.done" :value="true">
+                        {{card.text}}
+                    </md-checkbox>
+                    <md-button class="md-icon-button md-list-action" @click="delCard(index)">
+                        <md-icon class="md-accent">clear</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button md-list-action" @click="active = true">
+                        <md-icon class="md-accent">create</md-icon>
+                    </md-button>
+                </div>
+            </md-list>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-material"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>
